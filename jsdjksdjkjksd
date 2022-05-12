@@ -1,0 +1,32 @@
+[33mcommit 579ea848c9f7c10e0eae5e1d973b74724a324409[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: walee <saeed261193@gmail.com>
+Date:   Fri Apr 29 17:25:56 2022 +0200
+
+    First commit
+
+.gitignore
+.vscode/settings.json
+Assets/Scenes.meta
+Assets/Scenes/SampleScene.unity
+Assets/Scenes/SampleScene.unity.meta
+Assets/UDPReceive.cs
+Assets/UDPReceive.cs.meta
+Packages/manifest.json
+ProjectSettings/AudioManager.asset
+ProjectSettings/ClusterInputManager.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/EditorSettings.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/InputManager.asset
+ProjectSettings/NavMeshAreas.asset
+ProjectSettings/NetworkManager.asset
+ProjectSettings/Physics2DSettings.asset
+ProjectSettings/PresetManager.asset
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/QualitySettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/TimeManager.asset
+ProjectSettings/UnityConnectSettings.asset
+ProjectSettings/VFXManager.asset
