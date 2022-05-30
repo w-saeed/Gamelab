@@ -22,18 +22,21 @@ public class control : MonoBehaviour
 
     void Update()
     {
-
+/*
         //82.1111
         string data = udr.data;
-        print(data);
-
+        //print(data);
+        try
+        {
         float ft = float.Parse(data);
-
-        //float ft = 71.00f;
-
         transform.localEulerAngles = new Vector3(0, 0, ft);
 
-
+        }
+        catch (FormatException fex)
+        {
+        //float ft = 71.00f;
+        }
+*/
 
     }
 
