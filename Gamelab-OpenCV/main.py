@@ -101,11 +101,12 @@ while True:
         
 
         os.system("cls")
-        is_hand_open=0 #if true 1 else 0
-        if fingers2 == [1, 1, 1, 1, 1] or fingers2 == [1, 1, 1, 1, 1]:
+        is_hand_open=0 #if true 0 else 1
+        if fingers1 == [1, 1, 1, 1, 1] and fingers2 == [1, 1, 1, 1, 1]:
             print("stop")
-            is_hand_open=1
+            is_hand_open=0
         else:
+            is_hand_open=1
             print("go")
 
         #degree = (180 / math.PI) * math.Atan(((p2y - p1y) / (p2x - p1x)))

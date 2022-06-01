@@ -28,7 +28,6 @@ public class UDPReceive : MonoBehaviour
 
     float[] SeparateData(String data)
     {
-        Debug.Log(data);
         float[] vs = Array.ConvertAll(data.Split(";"), s => float.Parse(s));
         
         return vs;

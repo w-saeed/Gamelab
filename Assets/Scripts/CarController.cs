@@ -16,7 +16,7 @@ public class CarController : MonoBehaviour
     private float Currentbreakforce { get; set; } = 1000;
 
     [SerializeField] private bool isBreaking;
-    [SerializeField] private readonly float motorForce = 1000;
+    [SerializeField] public readonly float motorForce = 1000;
     [SerializeField] private float breakForce;
     [SerializeField] private readonly float maxSteeringAngle = 30;
 
@@ -33,7 +33,8 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //moving down the center of mass in order to prevent car flip
+        gameObject.GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -0.5f, 0);
 
     }
 
@@ -65,6 +66,8 @@ public class CarController : MonoBehaviour
 
         if (isBreaking)
         {
+            //frontLeftWheelCollider.motorTorque = -0.5f * motorForce;
+
             ApplyBreaking();
         }
         else
@@ -96,21 +99,27 @@ public class CarController : MonoBehaviour
     {
         if (!keyboardInput)
         {
-
-            HorizontalInput = GameObject.Find("Client").GetComponent<UDPReceive>().steering * -1;
-            VerticalInput = Math.Abs(1f - (speed * 5));
+            UDPReceive udp_recieve = GameObject.Find("Client").GetComponent<UDPReceive>();
+            HorizontalInput = udp_recieve.steering * -1;
+            //VerticalInput = Math.Abs(1f - (speed * 5));
             if (VerticalInput > 1) VerticalInput = 0f;
+            VerticalInput = (udp_recieve.distance  - 200f) / 100f;
+            if (VerticalInput < 0) VerticalInput = 0;
+            isBreaking = udp_recieve.breaking == 1;
         }
         else
         {
         HorizontalInput = Input.GetAxis(HORIZONTAL);
         VerticalInput = Input.GetAxis(VERTICAL);
-
+        isBreaking = Input.GetKey(KeyCode.Space);
         }
         
         //Debug.Log(VerticalInput);
-        isBreaking = Input.GetKey(KeyCode.Space);
     }
+    //var xRotationLimit = 20;
+    //var yRotationLimit = 20;
+    //var zRotationLimit = 20;
+
 
     private void UpdateWheels()
     {
@@ -139,9 +148,10 @@ public class CarController : MonoBehaviour
     public float speed;
     public float speedPerSec;
 
+
     void Update()
     {
-
+        
 
     }
 }

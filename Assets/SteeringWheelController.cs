@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Reflection;
 using UnityEditor;
 
-public class control : MonoBehaviour
+public class SteeringWheelController : MonoBehaviour
 {
     // Start is called before the first frame update
     public UDPReceive udr;
@@ -22,21 +22,23 @@ public class control : MonoBehaviour
 
     void Update()
     {
-/*
+
         //82.1111
-        string data = udr.data;
+        UDPReceive udp_recieve = GameObject.Find("Client").GetComponent<UDPReceive>();
+
+        float data = udp_recieve.steering * 90f;
         //print(data);
         try
         {
-        float ft = float.Parse(data);
-        transform.localEulerAngles = new Vector3(0, 0, ft);
+            //Debug.Log(data);
+        gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, data);
 
         }
         catch (FormatException fex)
         {
         //float ft = 71.00f;
         }
-*/
+
 
     }
 
