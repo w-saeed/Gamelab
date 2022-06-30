@@ -1,0 +1,15 @@
+steps:
+py -m venv env
+
+activate:
+.\env\Scripts\activate
+
+
+install numpy
+pip install opencv-python
+pip install cvzone
+pip install mediapipe
+
+
+or
+py -m pip install -r requirements.txt
