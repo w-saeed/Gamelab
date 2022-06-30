@@ -94,7 +94,7 @@ public class CarController : MonoBehaviour
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
-    Boolean keyboardInput = false;
+    Boolean keyboardInput = true;
     private void GetInput()
     {
         if (!keyboardInput)
