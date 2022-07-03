@@ -16,7 +16,7 @@ public class CarController : MonoBehaviour
     private float Currentbreakforce { get; set; } = 1000;
 
     [SerializeField] private bool isBreaking;
-    [SerializeField] private readonly float motorForce = 1000;
+    [SerializeField] public readonly float motorForce = 1000;
     [SerializeField] private float breakForce;
     [SerializeField] private readonly float maxSteeringAngle = 30;
 
@@ -33,7 +33,8 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //moving down the center of mass in order to prevent car flip
+        gameObject.GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -0.5f, 0);
 
     }
 
@@ -48,7 +49,7 @@ public class CarController : MonoBehaviour
 
         //calcuating speed 
         totalDistance += Vector3.Distance(lastPosition, transform.position);
-       // speedPerSec = Vector3.Distance(lastPosition, transform.position)
+        // speedPerSec = Vector3.Distance(lastPosition, transform.position)
         // / Time.deltaTime;
         speed = Vector3.Distance(lastPosition, transform.position);
         lastPosition = transform.position;
@@ -65,6 +66,8 @@ public class CarController : MonoBehaviour
 
         if (isBreaking)
         {
+            //frontLeftWheelCollider.motorTorque = -0.5f * motorForce;
+
             ApplyBreaking();
         }
         else
@@ -96,21 +99,37 @@ public class CarController : MonoBehaviour
     {
         if (!keyboardInput)
         {
+            
+            UDPReceive udp_recieve = GameObject.Find("Client").GetComponent<UDPReceive>();
+            HorizontalInput = udp_recieve.angle * -1;
+            //VerticalInput = Math.Abs(1f - (speed * 5));
 
-            HorizontalInput = GameObject.Find("Client").GetComponent<UDPReceive>().steering * -1;
-            VerticalInput = Math.Abs(1f - (speed * 5));
-            if (VerticalInput > 1) VerticalInput = 0f;
+            isBreaking = udp_recieve.distance < 150;
+            if(udp_recieve.handsopen != 1.0f)
+            {
+                VerticalInput = (udp_recieve.distance - 200f) / 100f;
+                VerticalInput = VerticalInput > 1 ? 1 : VerticalInput;
+                VerticalInput = VerticalInput < 0 ? 0 : VerticalInput;
+            }
+            else
+            {
+                VerticalInput = -1;
+            }
+            
         }
         else
         {
-        HorizontalInput = Input.GetAxis(HORIZONTAL);
-        VerticalInput = Input.GetAxis(VERTICAL);
-
+            HorizontalInput = Input.GetAxis(HORIZONTAL);
+            VerticalInput = Input.GetAxis(VERTICAL);
+            isBreaking = Input.GetKey(KeyCode.Space);
         }
-        
+
         //Debug.Log(VerticalInput);
-        isBreaking = Input.GetKey(KeyCode.Space);
     }
+    //var xRotationLimit = 20;
+    //var yRotationLimit = 20;
+    //var zRotationLimit = 20;
+
 
     private void UpdateWheels()
     {
@@ -138,6 +157,7 @@ public class CarController : MonoBehaviour
     private Vector3 lastPosition;
     public float speed;
     public float speedPerSec;
+
 
     void Update()
     {

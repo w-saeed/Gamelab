@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 
-public class First : MonoBehaviour
+public class Initialisation : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-
+        /*
         System.Diagnostics.Process process = new System.Diagnostics.Process();
         System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
         process.StartInfo.Arguments = null;
@@ -17,10 +17,10 @@ public class First : MonoBehaviour
 
         process.StartInfo.UseShellExecute = true;
 
-        process.StartInfo.FileName = @"C:\Users\walee\Desktop\exe.win-amd64-3.9\main.exe";
+        process.StartInfo.FileName = @".\exe.win-amd64-3.9\main.exe";
 
         process.Start();
-
+*/
     }
 
 

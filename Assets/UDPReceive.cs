@@ -10,12 +10,12 @@ public class UDPReceive : MonoBehaviour
 
     Thread receiveThread;
     UdpClient client;
-    public int port = 5052;
+
     public bool startRecieving = true;
     public bool printToConsole = false;
     private string data;
 
-    public float steering = 0f, distance = 0f, breaking = 0f;
+    public float angle = 0f, distance = 0f, handsopen = 0f;
 
     public void Start()
     {
@@ -28,7 +28,7 @@ public class UDPReceive : MonoBehaviour
 
     float[] SeparateData(String data)
     {
-        Debug.Log(data);
+        //Debug.Log(data);
         float[] vs = Array.ConvertAll(data.Split(";"), s => float.Parse(s));
 
         return vs;
@@ -37,20 +37,23 @@ public class UDPReceive : MonoBehaviour
     // receive thread
     private void ReceiveData()
     {
+       // client = new UdpClient(port);
+        client = SingletonUDPClient.GetInstance().Client;
 
-        client = new UdpClient(port);
         while (startRecieving)
         {
-
+            Thread.Sleep(10);
             try
             {
                 IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
                 byte[] dataByte = client.Receive(ref anyIP);
                 data = Encoding.UTF8.GetString(dataByte);
                 float[] dataValues = SeparateData(data);
-                steering = dataValues[0] / 60;
+                angle = dataValues[0] / 60;
                 distance = dataValues[1];
-                breaking = dataValues[2];
+
+                handsopen = dataValues[2];
+
 
                 if (printToConsole) { print(data); }
             }

@@ -12,7 +12,6 @@ public class SteeringWheelController : MonoBehaviour
     public UDPReceive udr;
 
 
-
     void Start()
     {
 
@@ -27,14 +26,18 @@ public class SteeringWheelController : MonoBehaviour
         //82.1111
         UDPReceive udp_recieve = GameObject.Find("Client").GetComponent<UDPReceive>();
 
-        float data = udp_recieve.steering * 90f;
-        print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" + data);
+        float data = udp_recieve.angle * 90f;
+        //print(data);
+        try
+        {
+            //Debug.Log(data);
+            gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, data);
 
-        Debug.Log("ssssssssssssssssssssssssssssssssssssssssssss" + data);
-        gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, data);
-
-
-
+        }
+        catch (FormatException fex)
+        {
+            //float ft = 71.00f;
+        }
 
 
     }
