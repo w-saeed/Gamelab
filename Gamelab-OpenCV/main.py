@@ -17,26 +17,21 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 serverAddressPort = ("127.0.0.1", 5052)
 
-
 while True:
 
     # Get image frame
 
     success, img = cap.read()
     if not success:
-          print("Ignoring empty camera frame.")
-          # If loading a video, use 'break' instead of 'continue'.
-          continue
+        print("Ignoring empty camera frame.")
+        # If loading a video, use 'break' instead of 'continue'.
+        continue
     hands, img = detector.findHands(img)
 
-    #if len(hands) != 2:
+    # if len(hands) != 2:
     #    continue #Ignoring when Hands not found
 
     data = []
-
-
-
-
 
     if len(hands) == 2:
 
@@ -51,7 +46,7 @@ while True:
         handtype1 = hand1["type"]
 
         fingers1 = detector.fingersUp(hand1)
-    
+
         hand2 = hands[1]
 
         lmList2 = hand2['lmList']
@@ -62,32 +57,24 @@ while True:
 
         handtype2 = hand2["type"]
 
-
         fingers2 = detector.fingersUp(hand2)
 
+        # print(handtype1, handtype2)
 
-        #print(handtype1, handtype2)
+        # print(centerPoint1,centerPoint2)
 
-        #print(centerPoint1,centerPoint2)
+        # data = [centerPoint1]
 
-        #data = [centerPoint1]
-
-        #data2 =[centerPoint2]
-
-
-
+        # data2 =[centerPoint2]
 
         data = [centerPoint1, centerPoint2]
         print(data)
 
-
-
-        #data3 =map(int, data)
+        # data3 =map(int, data)
 
         p1x = centerPoint1[0]
 
         p1y = centerPoint1[1]
-
 
         p2x = centerPoint2[0]
 
@@ -96,20 +83,19 @@ while True:
         if (p2x - p1x) != 0:
             degree = ((p2y - p1y) / (p2x - p1x))
 
-        #print(degree)
+        # print(degree)
         angle = (180 / math.pi) * math.atan(degree)
-        
 
         os.system("cls")
-        is_hand_open=0 #if true 1 else 0
+        is_hand_open = 0  # if true 1 else 0
         if fingers2 == [1, 1, 1, 1, 1] or fingers2 == [1, 1, 1, 1, 1]:
             print("stop")
-            is_hand_open=1
+            is_hand_open = 1
         else:
             print("go")
 
-        #degree = (180 / math.PI) * math.Atan(((p2y - p1y) / (p2x - p1x)))
-        #print(degree)
+        # degree = (180 / math.PI) * math.Atan(((p2y - p1y) / (p2x - p1x)))
+        # print(degree)
         length, info, img = detector.findDistance(centerPoint1, centerPoint2, img)  # with draw
 
         print("distance: ", length)
