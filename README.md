@@ -41,11 +41,11 @@ Zur Steuerung des Fahrzeugs soll man zwischen drei Haupthandpositionen entscheid
 
 Um die Lenkung des Fahrzeugs zu steuern, sollten die Hände in die richtige Richtung bewegt werden. (vgl. Abbildung 2)
 
-![](RackMultipart20221002-1-3g1sa9_html_4bb6ec346b4ecd46.png)
+![image](https://user-images.githubusercontent.com/28017799/193477517-54bcfc7b-f905-483b-b348-3e35c85af988.png)
 
 Abbildung 1: Die Handpositionen für das Geradeausfahren
 
-![](RackMultipart20221002-1-3g1sa9_html_2297c0ac1f90b407.png) ![](RackMultipart20221002-1-3g1sa9_html_53b186cfa46e9312.png)
+![image](https://user-images.githubusercontent.com/28017799/193477525-183a4041-754e-426b-aa35-f34ca0e51a01.png) ![image](https://user-images.githubusercontent.com/28017799/193477537-3a2e42c2-be6f-447b-b83f-df48e68c8648.png)
 
 Abbildung 2: Steuerung der Lenkung
 
@@ -53,7 +53,7 @@ Abbildung 2: Steuerung der Lenkung
 
 Abbildung 4: Handstellung zum Bremsen
 
-## ![](RackMultipart20221002-1-3g1sa9_html_e7fbe504720ac23f.png)
+## ![image](https://user-images.githubusercontent.com/28017799/193477570-ab994aa2-a8eb-47d3-bd58-9ada9e7fec2d.png)
 
 ## Abbildung 5: Handstellung zum Rückwertfahren
 
@@ -61,9 +61,9 @@ Abbildung 4: Handstellung zum Bremsen
 
 Der Spieler kann das Auto problemlos ohne externe Hardware außer der Kamera und dem Computer fahren.
 
-## Abbildung 6: Menüfenster ![](RackMultipart20221002-1-3g1sa9_html_2b1e3c50ca0490fb.png)
+## Abbildung 6: Menüfenster ![image](https://user-images.githubusercontent.com/28017799/193477596-cfd6a2e0-6eec-42e2-9f30-29e8e93d07af.png)
 
-![](RackMultipart20221002-1-3g1sa9_html_d54185984cd586c8.png)Abbildung 7: Die implementierte Umgebung.
+![image](https://user-images.githubusercontent.com/28017799/193477604-ecdf7be4-279a-4e12-a107-80db7c84f6ec.png)Abbildung 7: Die implementierte Umgebung.
 
 ## **Fazit**
 
